@@ -1,5 +1,5 @@
 import 'dotenv/config'
-import express, { Response, Request, NextFunction } from 'express'
+import express, { Response, Request } from 'express'
 import 'express-async-errors'
 import cors from 'cors'
 import { AppError } from '@shared/errors/AppError'
@@ -10,25 +10,23 @@ app.use(express.json())
 app.use(cors())
 app.use(router)
 
-app.use(
-  (error: Error, request: Request, response: Response, Next: NextFunction) => {
-    if (error instanceof AppError) {
-      return response.status(error.statusCode).json({
-        body: {
-          status: 'error',
-          message: error.message,
-        },
-      })
-    }
-    console.log('message: ', error)
-    return response.status(500).json({
+app.use((error: Error, request: Request, response: Response) => {
+  if (error instanceof AppError) {
+    return response.status(error.statusCode).json({
       body: {
         status: 'error',
-        message: 'Internal Server Error',
+        message: error.message,
       },
     })
-  },
-)
+  }
+  console.log('message: ', error)
+  return response.status(500).json({
+    body: {
+      status: 'error',
+      message: 'Internal Server Error',
+    },
+  })
+})
 
 app.listen(process.env.PORT, () => {
   try {
