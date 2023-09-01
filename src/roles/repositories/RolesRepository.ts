@@ -19,7 +19,13 @@ export class RolesRepository {
     this.roles.push(role)
     return role
   }
+
   findAll(): Role[] {
     return this.roles
+  }
+
+  findByName(name: string): Role | undefined {
+    const role = this.roles.find(role => role.name === name)
+    return role
   }
 }
