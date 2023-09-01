@@ -1,0 +1,12 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "MyAPI Documentation",
+    "description": "MyAPI documentation with all specifications",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Rodolfo Augusto Rodrigues",
+      "email": "rar2023@icloud.com"
+    }
+  }
+}
