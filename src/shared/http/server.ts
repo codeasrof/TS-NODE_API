@@ -23,13 +23,6 @@ app.use((error: Error, request: Request, response: Response) => {
       },
     })
   }
-  console.log('message: ', error)
-  return response.status(500).json({
-    body: {
-      status: 'error',
-      message: 'Internal Server Error',
-    },
-  })
 })
 
 app.listen(process.env.PORT, () => {
